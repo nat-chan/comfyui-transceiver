@@ -1,0 +1,7 @@
+ruff
+mypy
+pydantic
+toml>=0.10.2
+grip>=4.6.2
+pylance>=0.10.15
+ipykernel>=6.29.4
