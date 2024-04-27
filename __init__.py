@@ -1,3 +1,4 @@
+import re
 import torch
 from transceiver.core import transceiver
 
@@ -8,6 +9,12 @@ ComfyUI/main.pyから動的に探索され、読み込まれる
 
 NODE_CLASS_MAPPINGS = {}
 NODE_DISPLAY_NAME_MAPPINGS = {}
+
+def format_class_name(class_name: str) -> str:
+    # 先頭以外の大文字の前に空白を挟む
+    formatted_name = re.sub(r'(?<!^)(?=[A-Z])', ' ', class_name)
+    return formatted_name
+
 class CustomNodeMeta(type):
     def __new__(
         cls,
@@ -18,7 +25,7 @@ class CustomNodeMeta(type):
         global NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
         new_class = super().__new__(cls, name, bases, attrs|{"FUNCTION": "run", "CATEGORY": "Transceiver📡"})
         NODE_CLASS_MAPPINGS[name] = new_class
-        NODE_DISPLAY_NAME_MAPPINGS[name] = name
+        NODE_DISPLAY_NAME_MAPPINGS[name] = format_class_name(name)+"📡"
         return new_class
 
 class SaveImageTransceiver(metaclass=CustomNodeMeta):
