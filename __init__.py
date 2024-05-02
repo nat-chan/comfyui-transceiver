@@ -99,34 +99,7 @@ class LoadImageTransceiver(metaclass=CustomNodeMeta):
 
 
 # {{{ server ---
-routes: aiohttp.web_routedef.RouteTableDef = PromptServer.instance.routes
 app: aiohttp.web_app.Application = PromptServer.instance.app
-
-
-@routes.post("/transceiver_send_to_channel")
-async def transceiver_send_to_channel(
-    request: aiohttp.web_request.Request,
-) -> aiohttp.web_response.Response:
-    channel = request.query.get("channel")
-    if channel is None:
-        return web.Response(status=400, text="channel query parameter is required")
-    post = await request.post()
-    print("channel:", channel)
-    print("post:", post)
-
-    response = web.Response(status=200, text="successfuly sent to channel")
-    return response
-
-
-@routes.get("/transceiver_recieve_from_channel")
-async def transceiver_recieve_from_channel(
-    request: aiohttp.web_request.Request,
-) -> aiohttp.web_response.Response:
-    channel = request.query.get("channel")
-    if channel is None:
-        return web.Response(status=400, text="channel query parameter is required")
-    buffer = b"dummy"
-    return web.json_response({"buffer": buffer})
 
 
 async def websocket_handler(request):
