@@ -6,3 +6,4 @@ grip>=4.6.2
 pylance>=0.10.15
 ipykernel>=6.29.4
 requests # client side test
+aiohttp # client side test
