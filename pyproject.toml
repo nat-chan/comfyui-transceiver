@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-transceiver"
+description = "Transceiver is a python library that swiftly exchanges fundamental data structures, specifically numpy arrays, between processes, optimizing AI inference tasks that utilize ComfyUI."
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["transceiver"]
+
+[project.urls]
+Repository = "https://github.com/nat-chan/comfyui-transceiver"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "comfyui-transceiver"
+Icon = ""
